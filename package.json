@@ -13,5 +13,8 @@
     "@typespec/openapi": "^1.12.0",
     "@typespec/openapi3": "^1.12.0",
     "@typespec/rest": "^0.82.0"
+  },
+  "devDependencies": {
+    "shadcn": "^4.8.3"
   }
 }
