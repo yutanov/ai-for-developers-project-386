@@ -3,7 +3,8 @@ import { CalendarDays } from 'lucide-react'
 
 const navLinks = [
   { to: '/book', label: 'Записаться' },
-  { to: '/admin/event-types', label: 'Админка' },
+  { to: '/admin/event-types', label: 'Типы событий' },
+  { to: '/admin/bookings', label: 'Бронирования' },
 ]
 
 export function Header() {
