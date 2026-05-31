@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 from fastapi import FastAPI, Request
@@ -10,10 +11,11 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 from app.models import ErrorBody
 from app.routers import admin, public, slots, bookings
 
+server_url = os.getenv("RENDER_EXTERNAL_URL", "http://localhost:3000")
 app = FastAPI(
     title="Calendar Booking API",
     version="1.0.0",
-    servers=[{"url": "http://localhost:3000", "description": "Local development"}],
+    servers=[{"url": server_url, "description": "Render" if "RENDER_EXTERNAL_URL" in os.environ else "Local development"}],
 )
 
 
@@ -37,6 +39,11 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
             details=[str(e) for e in exc.errors()],
         ).model_dump(),
     )
+
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+
 
 app.add_middleware(
     CORSMiddleware,

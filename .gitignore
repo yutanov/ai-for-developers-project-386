@@ -6,3 +6,6 @@ design_example
 
 # python venv
 venv/
+
+# env
+.env
